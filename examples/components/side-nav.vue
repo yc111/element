@@ -1,11 +1,11 @@
-<style>
+<style lang="scss">
   .side-nav {
     width: 100%;
     box-sizing: border-box;
     padding-right: 30px;
-    transition: opacity .5s;
-    &:hover {
-      opacity: 1 !important;
+    transition: opacity .3s;
+    &.is-fade {
+      transition: opacity 3s;
     }
 
     li {
@@ -22,7 +22,7 @@
       margin-top: 15px;
     }
 
-    > ul > .nav-item:nth-child(-n + 3) > a {
+    > ul > .nav-item:nth-child(-n + 4) > a {
       margin-top: 0;
     }
 
@@ -63,6 +63,37 @@
           }
         }
       }
+  
+      &.sponsors {
+        & > .sub-nav {
+          margin-top: -10px;
+        }
+        
+        & > a {
+          color: #777;
+          font-weight: 300;
+          font-size: 14px;
+        }
+        
+        .nav-item {
+          display: inline-block;
+        
+          a {
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 8px 12px 12px 0;
+
+            img {
+              width: 42px;
+            }
+          }
+
+          &:first-child a img {
+            width: 36px;
+          }
+        }
+      }
     }
 
     .nav-group__title {
@@ -88,9 +119,28 @@
   <div
     class="side-nav"
     @mouseenter="isFade = false"
+    :class="{ 'is-fade': isFade }"
     :style="navStyle">
     <ul>
-      <li class="nav-item" v-for="item in data">
+      <li class="nav-item sponsors">
+        <a>{{ lang === 'zh-CN' ? '赞助商' : 'Sponsors' }}</a>
+        <ul class="pure-menu-list sub-nav">
+          <li class="nav-item" v-show="lang !== 'zh-CN'">
+            <a href="https://tipe.io/?ref=element" target="_blank">
+              <img src="~examples/assets/images/tipe.svg" alt="tipe.io">
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="sponsor" href="https://www.duohui.cn/?utm_source=element&utm_medium=web&utm_campaign=element-index" target="_blank">
+              <img src="~examples/assets/images/duohui.svg" alt="duohui">
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="nav-item"
+        v-for="(item, key) in data"
+        :key="key">
         <a v-if="!item.path && !item.href" @click="expandMenu">{{item.name}}</a>
         <a v-if="item.href" :href="item.href" target="_blank">{{item.name}}</a>
         <router-link
@@ -101,7 +151,10 @@
           v-text="item.title || item.name">
         </router-link>
         <ul class="pure-menu-list sub-nav" v-if="item.children">
-          <li class="nav-item" v-for="navItem in item.children">
+          <li
+            class="nav-item"
+            v-for="(navItem, key) in item.children"
+            :key="key">
             <router-link
               class=""
               active-class="active"
@@ -112,13 +165,18 @@
           </li>
         </ul>
         <template v-if="item.groups">
-          <div class="nav-group" v-for="group in item.groups">
+          <div
+            class="nav-group"
+            v-for="(group, key) in item.groups"
+            :key="key"
+            >
             <div class="nav-group__title" @click="expandMenu">{{group.groupName}}</div>
             <ul class="pure-menu-list">
               <li
                 class="nav-item"
-                v-for="navItem in group.list"
-                v-if="!navItem.disabled">
+                v-for="(navItem, key) in group.list"
+                v-show="!navItem.disabled"
+                :key="key">
                 <router-link
                   active-class="active"
                   :to="base + navItem.path"
@@ -167,13 +225,14 @@
         if (this.isSmallScreen) {
           style.paddingBottom = '60px';
         }
-        if (this.isFade) {
-          style.opacity = '0.5';
-        }
+        style.opacity = this.isFade ? '0.5' : '1';
         return style;
       },
+      lang() {
+        return this.$route.meta.lang;
+      },
       langConfig() {
-        return compoLang.filter(config => config.lang === this.$route.meta.lang)[0]['nav'];
+        return compoLang.filter(config => config.lang === this.lang)[0]['nav'];
       }
     },
     methods: {
