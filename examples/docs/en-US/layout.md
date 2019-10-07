@@ -1,34 +1,3 @@
-<style>
-  .demo-layout {
-    .el-row {
-      margin-bottom: 20px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-    .el-col {
-      border-radius: 4px;
-    }
-    .bg-purple-dark {
-      background: #99a9bf;
-    }
-    .bg-purple {
-      background: #d3dce6;
-    }
-    .bg-purple-light {
-      background: #e5e9f2;
-    }
-    .grid-content {
-      border-radius: 4px;
-      min-height: 36px;
-    }
-    .row-bg {
-      padding: 10px 0;
-      background-color: #f9fafc;
-    }
-  }
-</style>
-
 ## Layout
 
 Quickly and easily create layouts with the basic 24-column.
@@ -37,7 +6,7 @@ Quickly and easily create layouts with the basic 24-column.
 
 Create basic grid layout using columns.
 
-::: demo With `row` and `col`, we can easily manipulate the layout using the `span` attribute.
+:::demo With `row` and `col`, we can easily manipulate the layout using the `span` attribute.
 ```html
 <el-row>
   <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
@@ -101,7 +70,7 @@ Create basic grid layout using columns.
 
 Column spacing is supported.
 
-::: demo Row provides `gutter` attribute to specify spacings between columns, and its default value is 0.
+:::demo Row provides `gutter` attribute to specify spacings between columns, and its default value is 0.
 ```html
 <el-row :gutter="20">
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
@@ -145,7 +114,7 @@ Column spacing is supported.
 
 Form a more complex hybrid layout by combining the basic 1/24 columns.
 
-::: demo
+:::demo
 ```html
 <el-row :gutter="20">
   <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
@@ -198,7 +167,7 @@ Form a more complex hybrid layout by combining the basic 1/24 columns.
 
 You can specify column offsets.
 
-::: demo You can specify the number of column offset by setting the value of `offset` attribute of Col.
+:::demo You can specify the number of column offset by setting the value of `offset` attribute of Col.
 
 ```html
 <el-row :gutter="20">
@@ -248,7 +217,7 @@ You can specify column offsets.
 
 Use the flex layout to make flexible alignment of columns.
 
-::: demo You can enable flex layout by setting `type` attribute to 'flex', and define the layout of child elements by setting `justify` attribute with start, center, end, space-between or space-around.
+:::demo You can enable flex layout by setting `type` attribute to 'flex', and define the layout of child elements by setting `justify` attribute with start, center, end, space-between or space-around.
 ```html
 <el-row type="flex" class="row-bg">
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
@@ -311,7 +280,7 @@ Use the flex layout to make flexible alignment of columns.
 
 Taking example by Bootstrap's responsive design, five breakpoints are preset: xs, sm, md, lg and xl.
 
-::: demo
+:::demo
 ```html
 <el-row :gutter="10">
   <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple"></div></el-col>

@@ -1,62 +1,3 @@
-<style>
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    color: #333;
-  }
-  
-  #common-layouts + .demo-container {
-    .el-header, .el-footer {
-      text-align: center;
-    }
-    
-    .el-aside {
-      background-color: #D3DCE6;
-      text-align: center;
-      line-height: 200px;
-    }
-    
-    .el-main {
-      background-color: #E9EEF3;
-      color: #333;
-      text-align: center;
-      line-height: 160px;
-    }
-    
-    & > .source > .el-container {
-      margin-bottom: 40px;
-    
-      &:nth-child(5) .el-aside,
-      &:nth-child(6) .el-aside {
-        line-height: 260px;
-      }
-    
-     &:nth-child(7) .el-aside {
-       line-height: 320px;
-      }
-    }
-  }
-</style>
-
-<script>
-  export default {
-    data() {
-      const item = {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      };
-      return {
-        tableData: Array(20).fill(item)
-      }
-    }
-  };
-</script>
-
 ## Container
 Container components for scaffolding basic structure of the page:
 
@@ -76,7 +17,7 @@ These components use flex for layout, so please make sure your browser supports 
 
 ### Common layouts
 
-::: demo
+:::demo
 ```html
 <el-container>
   <el-header>Header</el-header>
@@ -170,7 +111,7 @@ These components use flex for layout, so please make sure your browser supports 
 
 ### Example
 
-::: demo
+:::demo
 ```html
 <el-container style="height: 500px; border: 1px solid #eee">
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">

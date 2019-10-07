@@ -384,6 +384,7 @@
   @include m(picture) {
     .el-upload-list__item {
       overflow: hidden;
+      z-index: 0;
       background-color: #fff;
       border: 1px solid #c0ccda;
       border-radius: 6px;
@@ -430,6 +431,7 @@
       position: relative;
       z-index: 1;
       margin-left: -80px;
+      background-color: $--color-white
     }
 
     .el-upload-list__item-name {
